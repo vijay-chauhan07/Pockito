@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block content %}
+{% if user %}
+{%  for u in user %}
+<div>
+    <table>
+        <tr>
+            <td>Usernamr</td>
+            <td>Email</td>
+        </tr>
+        <tr>
+            <td>{{u.username}}</td>
+            <td>{{u.email}}</td>
+        </tr>
+    </table>
+</div>
+{% endfor %}
+{% else %}
+<p>no user generated: <a href="{% url 'form' %}">generate random user</a></p>
+{% endif %}
+
+{% endblock %}

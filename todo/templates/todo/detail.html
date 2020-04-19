@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+
+
+{% block content %}
+{% if messages %}
+<div class="messages">
+    {% for message in messages %}
+    <div {% if message.tags %} class="text-center alert alert-success { message.tags }}" role="alert" {% endif %}>
+        {{ message }}</div>
+    {% endfor %}
+</div>
+{% endif %}
+
+<div class="card text-center">
+    <div class="card-body">
+        <h5 class="card-title">{{object.title|title}}
+        </h5>
+
+        <p class="card-text"><strong>Short Description:</strong>{{object.description}}</p>
+        <p class="card-text"><strong>Deadline:</strong>{{object.deadline|date:"D, d M, Y, H:i"}}</p>
+    </div>
+    <div class="card-footer text-muted">{{object.updated|timesince}} {{object.updated|pluralize}} ago</p>
+        <a href="{% url 'update_todo_post' object.id %}" class="btn btn-warning">Edit</a>
+        <a href="{% url 'delete' object.id %}" class="btn btn-danger">Delete</a>
+
+    </div>
+</div>
+
+{% endblock %}

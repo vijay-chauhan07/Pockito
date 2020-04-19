@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+In your template, use something like:
+
+{% if messages %}
+<ul class="messages">
+    {% for message in messages %}
+    <li {% if message.tags %} class="alert alert-success
+    {{ message.tags }}" role="alert" {% endif %}>{{ message }}</li>
+    {% endfor %}
+</ul>
+{% endif %}
+{% block content %}
+{% for x in latest_reminder %}
+<div class="card w-50">
+    <h4 class="card-title"> <a href="{{x.get_absolute_url}}">{{x.title}}</a></h4>
+
+</div>
+
+{% endfor %}
+{% include 'todo/paginator.html' %}
+{% endblock %}
